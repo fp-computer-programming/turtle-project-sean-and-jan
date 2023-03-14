@@ -84,19 +84,19 @@ while moving == True:
 #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
 p2 = turtle.Turtle()
 p2.shape("turtle")
-def move_up():                                                                                                 #Define movement functuons
+def move_up_p2():                                                                                                 #Define movement functuons
     if p2.heading() != 270:
         p2.setheading(90)
         p2.speed(0)
-def move_down():
+def move_down_p2():
     if p2.heading() != 90:
         p2.setheading(270)
         p2.speed(0)
-def turn_left():
-    if p2.heading() != 0:
+def turn_left_p2():
+    if p2.heading_p2() != 0:
         p2.setheading(180)
         p2.speed(0)
-def turn_right():
+def turn_right_p2():
     if p2.heading() != 180:
         p2.setheading(0)
         p2.speed(0)
@@ -104,10 +104,10 @@ def turn_right():
 movingp2 = True
 while movingp2 == True:
     p2.forward(2)
-    window.onkeypress(move_up, "w")                                                                               #Bind the functions to specific keys
-    window.onkeypress(move_down, "s")
-    window.onkeypress(turn_left, "a")
-    window.onkeypress(turn_right, "d")
+    window.onkeypress(move_up_p2, "w")                                                                               #Bind the functions to specific keys
+    window.onkeypress(move_down_p2, "s")
+    window.onkeypress(turn_left_p2, "a")
+    window.onkeypress(turn_right_p2, "d")
     window.listen()
 
 p1.penup()
@@ -115,8 +115,5 @@ p2.penup()
 p1.goto(-200,200)
 p2.goto(200,-200)
 p2.left(180)
-p1.pendown()
-p2.pendown()
 
 window.mainloop()
- 
