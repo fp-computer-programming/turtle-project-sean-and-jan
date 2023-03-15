@@ -1,7 +1,8 @@
 #Author: Sean and Jan Salafia
 
 import turtle   #imports turtle module
-
+import time     #import time module
+  
 window = turtle.Screen()
 window.setup(600,600,0,0)
 window.screensize(600,600)        #sets screen size and drawing limits
@@ -17,6 +18,18 @@ screen.setup(width = 1.0, height = 1.0)
 canvas = screen.getcanvas()
 root = canvas.winfo_toplevel()
 root.overrideredirect(1)
+#-------------------------------------------------------------------------------------------------------------------------------
+#Timer
+# define the countdown func.
+def countdown(t):
+    while t:
+        mins, secs = divmod(t, 60)
+        timer = '{:02d}:{:02d}'.format(mins, secs)
+        print(timer, end="\r")
+        time.sleep(1)
+        t -= 1
+# input time in seconds
+t = window.textinput("Timer", "How many seconds would you like this duel to elapse?: ")
 #----------------------------------------------------------------------------------------------------------------
 score_p1 = 0
 score_p2 = 0
@@ -101,6 +114,7 @@ def turn_right_2():
         p2.speed(0)
 p2.penup()
 p2.goto(200,-200)
+p2.left(180)
 
 #+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
 moving = True
@@ -120,6 +134,15 @@ while moving == True:
     window.onkeypress(turn_left_2, "a")
     window.onkeypress(turn_right_2, "d")
 
-p1.left(180)
+
+#------------------------------------------------------------------------------------------------------------------------
+  
+#End the game
+if countdown(int(t)) == 0:
+    movement = False
+
+#----------------------------------------------------------------------------------------------------------------------------
+endscreen = turtle.Turtle()
+endscreen.write("Game Over")
 
 window.mainloop()
