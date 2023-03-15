@@ -77,14 +77,6 @@ def turn_right():
 p1.penup()
 p1.goto(-200,0)
 
-moving = True
-while moving == True:
-    p1.forward(2)
-    window.onkeypress(move_up, "Up")                                                                               #Bind the functions to specific keys
-    window.onkeypress(move_down, "Down")
-    window.onkeypress(turn_left, "Left")
-    window.onkeypress(turn_right, "Right")
-    window.listen()
 #--------------------------------------------------------------------------------------------------------------------------
 p2 = turtle.Turtle()
 p2.penup()
@@ -110,15 +102,24 @@ def turn_right_2():
 p2.penup()
 p2.goto(200,-200)
 
-movingp2 = True
-while movingp2 != False:
-    p2.forward(2)
-    window.onkeypress(move_up_2, "w")                                                                               #Bind the functions to specific keys
+#+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+moving = True
+while moving == True:
+    p1.forward(4)
+    p2.forward(4)
+
+    window.listen()
+
+    window.onkeypress(move_up, "Up")                                                                               #Bind p1 movement to specific keys
+    window.onkeypress(move_down, "Down")
+    window.onkeypress(turn_left, "Left")
+    window.onkeypress(turn_right, "Right")
+    
+    window.onkeypress(move_up_2, "w")                                                                               #Bind p2 movement to specific keys
     window.onkeypress(move_down_2, "s")
     window.onkeypress(turn_left_2, "a")
     window.onkeypress(turn_right_2, "d")
-    window.listen()
 
-p2.left(180)
+p1.left(180)
 
 window.mainloop()
