@@ -41,7 +41,7 @@ scorecard_p1.speed(0)
 scorecard_p1.color('black')
 scorecard_p1.penup()
 scorecard_p1.hideturtle()
-scorecard_p1.goto(0, 375)
+scorecard_p1.goto(0, 475)
 scorecard_p1.write('Player 1 Score: ' + str(score_p1), align='center', font = ('Raleway', 24, 'normal'))
 
 scorecard_p2 = turtle.Turtle()
@@ -49,7 +49,7 @@ scorecard_p2.speed(0)
 scorecard_p2.color('black')
 scorecard_p2.penup()
 scorecard_p2.hideturtle()
-scorecard_p2.goto(0, 330)
+scorecard_p2.goto(0, 425)
 scorecard_p2.write('Player 2 Score: ' + str(score_p2), align='center', font = ('Raleway', 24, 'normal'))
 
 # Outline of the playing field
@@ -59,12 +59,12 @@ border.shape('circle')
 border.color('black')
 border.penup()
 border.hideturtle()
-border.goto(650,310)
+border.goto(700,400)
 border.pendown()
-border.goto(-650,310)
-border.goto(-650,-400)
-border.goto(650,-400)
-border.goto(650,310)
+border.goto(-700,400)
+border.goto(-700,-400)
+border.goto(700,-400)
+border.goto(700,400)
 border.penup()
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -77,7 +77,6 @@ food.penup()
 food.setpos(0,100)
 
 #-----------------------------------------------------------------------------------------------------------------------
-
 
 def update_score_p1():
     scorecard_p1.clear()
@@ -137,7 +136,7 @@ p2.penup()
 p2.goto(200,-200)
 p2.left(180)
 
-#+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+#-------------------------------------------------------------------------------------------------------------------------------
 def coordinates(player):
     x = player.xcor()
     y = player.ycor()
@@ -148,29 +147,6 @@ def movement():
     global p2
     global moving
 
-    moving = True
-
-    while moving != False:
-        p1.forward(6)
-        p2.forward(6)
-        window.listen()
-
-        window.onkeypress(move_up, "Up")          #Bind p1 movement to specific keys
-        window.onkeypress(move_down, "Down")
-        window.onkeypress(turn_left, "Left")
-        window.onkeypress(turn_right, "Right")
-
-        window.onkeypress(move_up_2, "w")         #Bind p2 movement to specific keys
-        window.onkeypress(move_down_2, "s")
-        window.onkeypress(turn_left_2, "a")
-        window.onkeypress(turn_right_2, "d")
-
-        x,y = coordinates(p1)
-        bikecheck(x, y, p1)
-
-        x,y = coordinates(p2)
-        bikecheck(x, y, p2)
-
 def bikecheck(x,y,players):
     global moving
     global p1_xList
@@ -179,12 +155,26 @@ def bikecheck(x,y,players):
     global p2_yList
     if abs(x)> 650 or abs(y) > 350:
         moving = False
-        #bike blowing up animation
-        players.hideturtle()
-        for t in range(12):
-                players.right(30)
-                players.forward(30)
-                players.setposition(x,y)
+
+moving = True
+while moving == True:
+    p1.forward(6)
+    p2.forward(6)
+    window.listen()
+    window.onkeypress(move_up, "Up")          #Bind p1 movement to specific keys
+    window.onkeypress(move_down, "Down")
+    window.onkeypress(turn_left, "Left")
+    window.onkeypress(turn_right, "Right")
+    window.onkeypress(move_up_2, "w")         #Bind p2 movement to specific keys
+    window.onkeypress(move_down_2, "s")
+    window.onkeypress(turn_left_2, "a")
+    window.onkeypress(turn_right_2, "d")
+    x,y = coordinates(p1)
+    bikecheck(x, y, p1)
+    x,y = coordinates(p2)
+    bikecheck(x, y, p2)
+
+
 
 if p1.distance(food) < 20:
     food.goto(random.randint(-580,580),random.randint(-300,300))
