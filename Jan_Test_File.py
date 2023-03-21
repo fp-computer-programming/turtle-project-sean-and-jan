@@ -1,9 +1,7 @@
 #Author: Sean and Jan Salafia
-
 import turtle   #imports turtle module
 import random
 import time
-
 
 window = turtle.Screen()
 window.title("Turtle Snake Score Race")   #title of window
@@ -12,7 +10,6 @@ window.bgcolor(102, 255, 51)
 window_open = True
 #---------------------------------------------------------------------------------------------------------------
 
-#----------------------------------------------------------------------------------------------------------------
 #Setup
 def setup():
     global p1
@@ -46,16 +43,16 @@ scorecard_p1.speed(0)
 scorecard_p1.color('black')
 scorecard_p1.penup()
 scorecard_p1.hideturtle()
-scorecard_p1.goto(0, 475)
-scorecard_p1.write('Player 1 Score: ' + str(score_p1), align='center', font = ('Raleway', 24, 'normal'))
+scorecard_p1.goto(0, 500)
+scorecard_p1.write('Player 1 Score: ' + str(score_p1)+ "                     ", align='right', font = ('Raleway', 24, 'normal'))
 
 scorecard_p2 = turtle.Turtle()
 scorecard_p2.speed(0)
 scorecard_p2.color('black')
 scorecard_p2.penup()
 scorecard_p2.hideturtle()
-scorecard_p2.goto(0, 425)
-scorecard_p2.write('Player 2 Score: ' + str(score_p2), align='center', font = ('Raleway', 24, 'normal'))
+scorecard_p2.goto(0, 500)
+scorecard_p2.write('                     Player 2 Score: ' + str(score_p2), align='left', font = ('Raleway', 24, 'normal'))
 
 #----------------------------------------------------------------------------------------------------------------
 
@@ -66,12 +63,12 @@ border.shape('circle')
 border.color('black')
 border.penup()
 border.hideturtle()
-border.goto(700,400)
+border.goto(800,500)
 border.pendown()
-border.goto(-700,400)
-border.goto(-700,-400)
-border.goto(700,-400)
-border.goto(700,400)
+border.goto(-800,500)
+border.goto(-800,-500)
+border.goto(800,-500)
+border.goto(800,500)
 border.penup()
 
 #-----------------------------------------------------------------------------------------------------------------------
@@ -81,7 +78,7 @@ food.speed(0)
 food.shape("square")
 food.color('DeepPink2')
 food.penup()
-food.setpos(0,0)
+food.goto(random.randint(-700,700),random.randint(-400,400))
 
 #-----------------------------------------------------------------------------------------------------------------------
 #Speed Food
@@ -90,7 +87,7 @@ speed_food.speed(0)
 speed_food.shape("triangle")
 speed_food.color('azure1')
 speed_food.penup()
-speed_food.setpos(0,25)
+speed_food.goto(random.randint(-700,700),random.randint(-400,400))
 #-----------------------------------------------------------------------------------------------------------------------
 # Snake Big Food
 multi_food = turtle.Turtle()
@@ -98,7 +95,7 @@ multi_food.speed(0)
 multi_food.shape("circle")
 multi_food.color('black')
 multi_food.penup()
-multi_food.setpos(0,50)
+multi_food.goto(random.randint(-700,700),random.randint(-400,400))
 #-----------------------------------------------------------------------------------------------------------------------
 #Snake Speed
 p1_speed = 6
@@ -135,7 +132,7 @@ def turn_right():
         p1.speed(0)
 
 p1.penup()
-p1.goto(-200,0)
+p1.goto(-700,400)
 
 #--------------------------------------------------------------------------------------------------------------------------
 p2 = turtle.Turtle()
@@ -160,10 +157,41 @@ def turn_right_2():
         p2.setheading(0)
         p2.speed(0)
 p2.penup()
-p2.goto(200,-200)
+p2.goto(700,-400)
 p2.left(180)
 
 #-------------------------------------------------------------------------------------------------------------------------------
+def endgamep1():
+    p1.goto(0,0)
+    p2.goto(0,0)
+    window.clear()
+    window.colormode(255)
+    window.bgcolor(102, 255, 51)
+    end_game_screen = turtle.Turtle()
+    end_game_screen.speed(10)
+    end_game_screen.hideturtle()
+    end_game_screen.penup()
+    end_game_screen.goto(-100,30)
+    end_game_screen.color("black")
+    end_game_screen.write("Game Over! P1 wins!", align='center', font=("Raleway",36),)
+    screen.delay(100000)
+    
+def endgamep2():
+    p1.goto(0,0)
+    p2.goto(0,0)
+    window.clear()
+    window.colormode(255)
+    window.bgcolor(102, 255, 51)
+    end_game_screen = turtle.Turtle()
+    end_game_screen.speed(10)
+    end_game_screen.hideturtle()
+    end_game_screen.penup()
+    end_game_screen.goto(-100,30)
+    end_game_screen.color("black")
+    end_game_screen.write("Game Over! P2 wins!", align='center', font=("Raleway",36),)
+    screen.delay(100000)
+#-------------------------------------------------------------------------------------------------------------------------------
+
 moving = True
 def coordinates(player):
     x = player.xcor()
@@ -180,11 +208,21 @@ def pos_check(x,y,players):
     global p1_yList
     global p2_xList
     global p2_yList
-
-    if abs(x)> 700 or abs(y) > 400:
-        moving = False
         
+    if abs(x)> 800 or abs(y) > 500:
+        moving = False
+        window.clear()
+        window.colormode(255)
+        window.bgcolor(102, 255, 51)
+        end_game_screen = turtle.Turtle()
+        end_game_screen.speed(10)
+        end_game_screen.hideturtle()
+        end_game_screen.penup()
+        end_game_screen.goto(-100,30)
+        end_game_screen.color("black")
+        end_game_screen.write("Someone went out of bounds before score threshold was reached. Please play again!", align='center', font=("Raleway",25),)
     
+        
 while moving != False:
     p1.forward(p1_speed)
     p2.forward(p2_speed)
@@ -203,63 +241,47 @@ while moving != False:
     pos_check(x, y, p2)
     
     if p1.distance(food) < 20:
-        food.goto(random.randint(-580,580),random.randint(-300,300))
+        food.goto(random.randint(-700,700),random.randint(-400,400))
         score_p1 += 10
-        update_score_p1()
+        if score_p1 >= 500:
+            endgamep1()
+        else:
+            update_score_p1()
+            continue
+            
     if p1.distance(speed_food) < 20:
         p1_speed *= 1.1
-        speed_food.goto(random.randint(-580,580),random.randint(-300,300))
+        speed_food.goto(random.randint(-700,700),random.randint(-400,400))
+        
     if p1.distance(multi_food) < 25:
         score_p1 += 20
-        multi_food.goto(random.randint(-580,580),random.randint(-300,300))
-        update_score_p1()
+        multi_food.goto(random.randint(-700,700),random.randint(-400,400))
+        if score_p1 >= 500:
+            endgamep1()
+        else:
+            update_score_p1()
+            continue
+#------------------------------------------------------------------------------------------------------------            
     if p2.distance(food) < 20:
-        food.goto(random.randint(-580,580),random.randint(-300,300))
+        food.goto(random.randint(-700,700),random.randint(-400,400))
         score_p2 += 10
-        update_score_p2()
+        if score_p2 >= 500:
+            endgamep2()
+        else:
+            update_score_p2()
+            continue
     if p2.distance(speed_food) < 20:
         p2_speed *= 1.1
-        speed_food.goto(random.randint(-580,580),random.randint(-300,300))
+        speed_food.goto(random.randint(-700,700),random.randint(-400,400))
+        
     if p2.distance(multi_food) < 25:
         score_p2 += 20
-        multi_food.goto(random.randint(-580,580),random.randint(-300,300))
-        update_score_p2()
-        
-while moving == False:
-    if p2.distance(border) < 20:
-        window.clear()
-        end_game_screen = turtle.Turtle()
-        end_game_screen.speed(10)
-        end_game_screen.hideturtle()
-        end_game_screen.penup()
-        end_game_screen.goto(-100,30)
-        end_game_screen.color("black")
-        end_game_screen.write("GAME OVER!", font=("Raleway",36),)
-        end_game_screen.goto(-350,-40)
-        end_game_screen.write("CONGRATUALTIONS P1! You win!", font=("Raleway",36))
-        p2.clear
-        
-    elif p1.distance(border) < 20:
-        window.clear()
-        scorecard_p1.clear()
-        scorecard_p2.clear()
-        p1.clear()
-        p2.clear()
-        border.clear()
-        speed_food.clear()
-        food.clear()
-        multi_food.clear()
-        end_game_screen = turtle.Turtle()
-        end_game_screen.speed(10)
-        end_game_screen.hideturtle()
-        end_game_screen.penup()
-        end_game_screen.goto(-100,30)
-        end_game_screen.color("black")
-        end_game_screen.write("GAME OVER!", font=("Raleway",36),)
-        end_game_screen.goto(-350,-40)
-        end_game_screen.write("CONGRATUALTIONS P2! You win!", font=("Raleway",36))
-        p1.clear
-        
+        multi_food.goto(random.randint(-700,700),random.randint(-400,400))
+        if score_p2 >= 500:
+            endgamep2()
+        else:
+            update_score_p2()
+            continue
+#-----------------------------------------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------
 window.mainloop()
