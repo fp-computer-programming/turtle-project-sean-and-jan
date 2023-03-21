@@ -153,7 +153,7 @@ def bikecheck(x,y,players):
     global p1_yList
     global p2_xList
     global p2_yList
-    if abs(x)> 650 or abs(y) > 350:
+    if abs(x)> 700 or abs(y) > 400:
         moving = False
 
 moving = True
@@ -185,5 +185,8 @@ if p2.distance(food) < 20:
     score_p2 += 10
     update_score_p2()
 #-------------------------------------------------------------------------
+
+
+
 
 window.mainloop()
