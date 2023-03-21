@@ -2,11 +2,19 @@
 
 import turtle   #imports turtle module
 import random
+import time
+
 
 window = turtle.Screen()
 window.title("Turtle Snake Score Race")   #title of window
 window.colormode(255)
 window.bgcolor(102, 255, 51)
+
+#----------------------------------------------------------------------------------------------------------------
+#Start time
+start_time = time.time() 
+end_time = start_time + 60
+
 #----------------------------------------------------------------------------------------------------------------
 #Setup
 def setup():
@@ -72,12 +80,33 @@ border.penup()
 food = turtle.Turtle()
 food.speed(0)
 food.shape("square")
-food.color('red')
+food.color('DeepPink2')
 food.penup()
-food.setpos(0,100)
+food.setpos(0,0)
 
 #-----------------------------------------------------------------------------------------------------------------------
-
+#Speed Food
+speed_food = turtle.Turtle()
+speed_food.speed(0)
+speed_food.shape("triangle")
+speed_food.color('azure1')
+speed_food.penup()
+speed_food.setpos(0,25)
+#-----------------------------------------------------------------------------------------------------------------------
+# Snake Score Multiplier
+multi_food = turtle.Turtle()
+multi_food.speed(0)
+multi_food.shape("circle")
+multi_food.color('black')
+multi_food.shapesize(2)
+multi_food.penup()
+multi_food.setpos(0,50)
+#-----------------------------------------------------------------------------------------------------------------------
+#Snake Speed
+p1_speed = 6
+p2_speed = 6
+#-----------------------------------------------------------------------------------------------------------------------
+#Update Score
 def update_score_p1():
     scorecard_p1.clear()
     scorecard_p1.write('Player 1 Score: ' + str(score_p1), align='center', font = ('Raleway', 24, 'normal'))
@@ -137,17 +166,16 @@ p2.goto(200,-200)
 p2.left(180)
 
 #-------------------------------------------------------------------------------------------------------------------------------
+
 def coordinates(player):
     x = player.xcor()
     y = player.ycor()
     return x, y
-
 def movement():
     global p1
     global p2
     global moving
-
-def bikecheck(x,y,players):
+def pos_check(x,y,players):
     global moving
     global p1_xList
     global p1_yList
@@ -158,8 +186,8 @@ def bikecheck(x,y,players):
 
 moving = True
 while moving == True:
-    p1.forward(6)
-    p2.forward(6)
+    p1.forward(p1_speed)
+    p2.forward(p2_speed)
     window.listen()
     window.onkeypress(move_up, "Up")          #Bind p1 movement to specific keys
     window.onkeypress(move_down, "Down")
@@ -169,24 +197,35 @@ while moving == True:
     window.onkeypress(move_down_2, "s")
     window.onkeypress(turn_left_2, "a")
     window.onkeypress(turn_right_2, "d")
-    x,y = coordinates(p1)
-    bikecheck(x, y, p1)
-    x,y = coordinates(p2)
-    bikecheck(x, y, p2)
-
-
-
-if p1.distance(food) < 20:
-    food.goto(random.randint(-580,580),random.randint(-300,300))
-    score_p1 += 10
-    update_score_p1()
-if p2.distance(food) < 20:
-    food.goto(random.randint(-580,580),random.randint(-300,300))
-    score_p2 += 10
-    update_score_p2()
+#    x,y = coordinates(p1)
+#    pos_check(x, y, p1)
+#    x,y = coordinates(p2)
+#    pos_check(x, y, p2)
+    if p1.distance(food) < 20:
+        food.goto(random.randint(-580,580),random.randint(-300,300))
+        score_p1 += 10
+        update_score_p1()
+    if p1.distance(speed_food) < 20:
+        p1_speed *= 1.1
+        speed_food.goto(random.randint(-580,580),random.randint(-300,300))
+    if p1.distance(multi_food) < 25:
+        score_p1 += 20
+        speed_food.goto(random.randint(-580,580),random.randint(-300,300))
+        update_score_p1()
+    if p2.distance(food) < 20:
+        food.goto(random.randint(-580,580),random.randint(-300,300))
+        score_p2 += 10
+        update_score_p2()
+    if p2.distance(speed_food) < 20:
+        p2_speed *= 1.1
+        speed_food.goto(random.randint(-580,580),random.randint(-300,300))
+    if p2.distance(multi_food) < 25:
+        score_p2 += 20
+        multi_food.goto(random.randint(-580,580),random.randint(-300,300))
+        update_score_p2()
+        
+    
 #-------------------------------------------------------------------------
-
-
 
 
 window.mainloop()
