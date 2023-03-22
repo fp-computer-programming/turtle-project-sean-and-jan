@@ -86,10 +86,10 @@ p2_speed = 6            #sets flat value speed
 #Update Score
 def update_score_p1():                                                                                           #Function to update scorecard       
     scorecard_p1.clear()                                                                                         #Function to update scorecard         
-    scorecard_p1.write('Player 1 Score: ' + str(score_p1), align='center', font = ('Raleway', 24, 'normal'))     #Function to update scorecard                                                                                             
+    scorecard_p1.write('Player 1 Score: ' + str(score_p1)+'                                          ', align='center', font = ('Raleway', 24, 'normal'))     #Function to update scorecard                                                                                             
 def update_score_p2():                                                                                           #Function to update scorecard       
     scorecard_p2.clear()                                                                                         #Function to update scorecard         
-    scorecard_p2.write('Player 2 Score: ' + str(score_p2), align='center', font = ('Raleway', 24, 'normal'))     #Function to update scorecard                                                                                             
+    scorecard_p2.write('                                          Player 2 Score: ' + str(score_p2), align='center', font = ('Raleway', 24, 'normal'))     #Function to update scorecard                                                                                             
 #-----------------------------------------------------------------------------------------------------------------------
 
 p1 = turtle.Turtle()
