@@ -55,12 +55,12 @@ border.penup()               #Establishes the border
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Snake Food
-food = turtle.Turtle()                                       #Establishes pink squares as food                  
-food.speed(0)                                                #Establishes pink squares as food         
-food.shape("square")                                         #Establishes pink squares as food                
-food.color('DeepPink2')                                      #Establishes pink squares as food                   
-food.penup()                                                 #Establishes pink squares as food        
-food.goto(random.randint(-700,700),random.randint(-400,400)) #Establishes pink squares as food                                                        
+food = turtle.Turtle()                                       #Establishes pink circles as food worth 10 points                  
+food.speed(0)                                                #Establishes pink circles as food worth 10 points         
+food.shape("circle")                                         #Establishes pink circles as food worth 10 points                
+food.color('DeepPink2')                                      #Establishes pink circles as food worth 10 points                   
+food.penup()                                                 #Establishes pink circles as food worth 10 points        
+food.goto(random.randint(-700,700),random.randint(-400,400)) #Establishes pink circles as food worth 10 points                                                        
 
 #-----------------------------------------------------------------------------------------------------------------------
 #Speed Food
@@ -71,17 +71,41 @@ speed_food.color('azure1')                                           #Establishe
 speed_food.penup()                                                   #Establishes white triange as speed boost (+10%)                   
 speed_food.goto(random.randint(-700,700),random.randint(-400,400))   #Establishes white triange as speed boost (+10%)                                                                   
 #-----------------------------------------------------------------------------------------------------------------------
-# Snake Big Food
-multi_food = turtle.Turtle()                                       #Establishes black circle as +20 points               
-multi_food.speed(0)                                                #Establishes black circle as +20 points      
-multi_food.shape("circle")                                         #Establishes black circle as +20 points             
-multi_food.color('black')                                          #Establishes black circle as +20 points            
-multi_food.penup()                                                 #Establishes black circle as +20 points     
-multi_food.goto(random.randint(-700,700),random.randint(-400,400)) #Establishes black circle as +20 points                                                     
+# 20 Pts Snake Food
+multi_food_20 = turtle.Turtle()                                       #Establishes black circle as +20 points               
+multi_food_20.speed(0)                                                #Establishes black circle as +20 points      
+multi_food_20.shape("circle")                                         #Establishes black circle as +20 points             
+multi_food_20.color('black')                                          #Establishes black circle as +20 points            
+multi_food_20.penup()                                                 #Establishes black circle as +20 points     
+multi_food_20.goto(random.randint(-700,700),random.randint(-400,400)) #Establishes black circle as +20 points                                                     
+#-----------------------------------------------------------------------------------------------------------------------
+# 30 Pts Snake Food
+multi_food_30 = turtle.Turtle()                                       #Establishes black circle as +30 points               
+multi_food_30.speed(0)                                                #Establishes black circle as +30 points      
+multi_food_30.shape("circle")                                         #Establishes black circle as +30 points             
+multi_food_30.color('coral')                                          #Establishes black circle as +30 points            
+multi_food_30.penup()                                                 #Establishes black circle as +30 points     
+multi_food_30.goto(random.randint(-700,700),random.randint(-400,400)) #Establishes black circle as +30 points                                                     
+#-----------------------------------------------------------------------------------------------------------------------
+# 40 Pts Snake Food
+multi_food_40 = turtle.Turtle()                                       #Establishes black circle as +40 points               
+multi_food_40.speed(0)                                                #Establishes black circle as +40 points      
+multi_food_40.shape("circle")                                         #Establishes black circle as +40 points             
+multi_food_40.color('slate gray')                                          #Establishes black circle as +40 points            
+multi_food_40.penup()                                                 #Establishes black circle as +40 points     
+multi_food_40.goto(random.randint(-700,700),random.randint(-400,400)) #Establishes black circle as +40 points                                                     
+#-----------------------------------------------------------------------------------------------------------------------
+# 50 Pts Snake Food
+multi_food_50 = turtle.Turtle()                                       #Establishes black circle as +50 points               
+multi_food_50.speed(0)                                                #Establishes black circle as +50 points      
+multi_food_50.shape("circle")                                         #Establishes black circle as +50 points             
+multi_food_50.color('indigo')                                          #Establishes black circle as +50 points            
+multi_food_50.penup()                                                 #Establishes black circle as +50 points     
+multi_food_50.goto(random.randint(-700,700),random.randint(-400,400)) #Establishes black circle as +50 points                                                     
 #-----------------------------------------------------------------------------------------------------------------------
 #Snake Speed
-p1_speed = 6            #sets flat value speed
-p2_speed = 6            #sets flat value speed
+p1_speed = 5            #sets flat value speed
+p2_speed = 5            #sets flat value speed
 #-----------------------------------------------------------------------------------------------------------------------
 #Update Score
 def update_score_p1():                                                                                           #Function to update scorecard       
@@ -199,29 +223,29 @@ def pos_check(x,y,players):         #defines position check
         end_game_screen.goto(-100,30)                       #Set screen for replay game                                                                                                                       
         end_game_screen.color("black")                      #Set screen for replay game                                                                                                                        
         end_game_screen.write("Someone went out of bounds before score threshold was reached. Please play again!", align='center', font=("Raleway",25),)                                                                                                                                               
-    
+#------------------------------------------------------------------------------------------------------------ 
         
 while moving != False:                                                        #MAIN       
     p1.forward(p1_speed)                                    #speed p1 is flexible
     p2.forward(p2_speed)                                    #speed p2 is flexible
     window.listen()                                         #listens for inputs
-    window.onkeypress(move_up, "i")          #Bind p1 movement to specific keys
-    window.onkeypress(move_down, "k")
-    window.onkeypress(turn_left, "j")
-    window.onkeypress(turn_right, "l")
-    window.onkeypress(move_up_2, "w")         #Bind p2 movement to specific keys
-    window.onkeypress(move_down_2, "s")
-    window.onkeypress(turn_left_2, "a")
-    window.onkeypress(turn_right_2, "d")
+    window.onkeypress(move_up, "w")          #Bind p1 movement to specific keys
+    window.onkeypress(move_down, "s")
+    window.onkeypress(turn_left, "a")
+    window.onkeypress(turn_right, "d")
+    window.onkeypress(move_up_2, "i")         #Bind p2 movement to specific keys
+    window.onkeypress(move_down_2, "k")
+    window.onkeypress(turn_left_2, "j")
+    window.onkeypress(turn_right_2, "l")
     x,y = coordinates(p1)                        #Postion checks p1                          
     pos_check(x, y, p1)                          #Postion checks p1                      
     x,y = coordinates(p2)                        #Postion checks p2                          
     pos_check(x, y, p2)                          #Postion checks p2                     
-    
+    #------------------------------------------------------------------------------------------------------------ 
     if p1.distance(food) < 20:                                              #When turtle within 20 units
         food.goto(random.randint(-700,700),random.randint(-400,400))        #Teleport food to random cords
         score_p1 += 10                                                      #Add 10 score
-        if score_p1 >= 500:                                                 #Check if 500 points is exceeded
+        if score_p1 >= 1500:                                                 #Check if 1500 points is exceeded
             endgamep1()                                                     #If yes, go endgame
         else:                                                               #If no, update score
             update_score_p1()
@@ -231,14 +255,41 @@ while moving != False:                                                        #M
         p1_speed *= 1.1                                                       #10% speed boost                              
         speed_food.goto(random.randint(-700,700),random.randint(-400,400))    #Teleport speed shape to random cords                                                                                  
                                                                                                 
-    if p1.distance(multi_food) < 25:                                          #if within 25 units of multifood                                              
+    if p1.distance(multi_food_20) < 20:                                          #if within 20 units of multifood                                              
         score_p1 += 20                                                        #add 20 points                              
-        multi_food.goto(random.randint(-700,700),random.randint(-400,400))    #teleport to random cords                                                                                  
-        if score_p1 >= 500:                                                                                 
-            endgamep1()                                                       #Check if 500 points is exceeded                           
+        multi_food_20.goto(random.randint(-700,700),random.randint(-400,400))    #teleport to random cords                                                                                  
+        if score_p1 >= 1500:                                                                                 
+            endgamep1()                                                       #Check if 1500 points is exceeded                           
         else:                                                                 #If yes, go endgame                   
             update_score_p1()                                                 #If no, update score                                   
-            continue                                                                                         
+            continue
+
+    if p1.distance(multi_food_30) < 20:                                          #if within 20 units of multifood                                              
+        score_p1 += 30                                                        #add 30 points                              
+        multi_food_30.goto(random.randint(-700,700),random.randint(-400,400))    #teleport to random cords                                                                                  
+        if score_p1 >= 1500:                                                                                 
+            endgamep1()                                                       #Check if 1500 points is exceeded                           
+        else:                                                                 #If yes, go endgame                   
+            update_score_p1()                                                 #If no, update score                                   
+            continue  
+
+    if p1.distance(multi_food_40) < 20:                                          #if within 20 units of multifood                                              
+        score_p1 += 40                                                        #add 40 points                              
+        multi_food_40.goto(random.randint(-700,700),random.randint(-400,400))    #teleport to random cords                                                                                  
+        if score_p1 >= 1500:                                                                                 
+            endgamep1()                                                       #Check if 1500 points is exceeded                           
+        else:                                                                 #If yes, go endgame                   
+            update_score_p1()                                                 #If no, update score                                   
+            continue
+
+    if p1.distance(multi_food_50) < 20:                                          #if within 20 units of multifood                                              
+        score_p1 += 50                                                        #add 40 points                              
+        multi_food_50.goto(random.randint(-700,700),random.randint(-400,400))    #teleport to random cords                                                                                  
+        if score_p1 >= 1500:                                                                                 
+            endgamep1()                                                       #Check if 1500 points is exceeded                           
+        else:                                                                 #If yes, go endgame                   
+            update_score_p1()                                                 #If no, update score                                   
+            continue                                                                                                   
 #------------------------------------------------------------------------------------------------------------            
     if p2.distance(food) < 20:                                                #When turtle within 20 units                                                                                      
         food.goto(random.randint(-700,700),random.randint(-400,400))          #Teleport food to random cords                                                                                                                              
@@ -252,14 +303,50 @@ while moving != False:                                                        #M
         p2_speed *= 1.1                                                        #10% speed boost                                                                               
         speed_food.goto(random.randint(-700,700),random.randint(-400,400))     #Teleport speed shape to random cords                                                                                                                                 
                                                                                                                                                 
-    if p2.distance(multi_food) < 25:                                           #if within 25 units of multifood                                                                                             
+    if p2.distance(multi_food_20) < 20:                                           #if within 20 units of multifood                                                                                             
         score_p2 += 20                                                         #add 20 points                                                                             
-        multi_food.goto(random.randint(-700,700),random.randint(-400,400))     #teleport to random cords                                                                                                                                 
+        multi_food_20.goto(random.randint(-700,700),random.randint(-400,400))     #teleport to random cords                                                                                                                                 
         if score_p2 >= 500:                                                    #Check if 500 points is exceeded                                                                                 
             endgamep2()                                                        #If yes, go endgame                                                                             
         else:                                                                  #If no, update score                                                                      
             update_score_p2()                                                                                                                                       
-            continue                                                                                                                                        
-#-----------------------------------------------------------------------------------------------------------
+            continue  
 
-window.mainloop()       #Go time
+    if p2.distance(multi_food_20) < 20:                                          #if within 20 units of multifood                                              
+        score_p2 += 20                                                        #add 20 points                              
+        multi_food_20.goto(random.randint(-700,700),random.randint(-400,400))    #teleport to random cords                                                                                  
+        if score_p2 >= 1500:                                                                                 
+            endgamep1()                                                       #Check if 1500 points is exceeded                           
+        else:                                                                 #If yes, go endgame                   
+            update_score_p2()                                                 #If no, update score                                   
+            continue
+
+    if p2.distance(multi_food_30) < 20:                                          #if within 20 units of multifood                                              
+        score_p2 += 30                                                        #add 30 points                              
+        multi_food_30.goto(random.randint(-700,700),random.randint(-400,400))    #teleport to random cords                                                                                  
+        if score_p2 >= 1500:                                                                                 
+            endgamep1()                                                       #Check if 1500 points is exceeded                           
+        else:                                                                 #If yes, go endgame                   
+            update_score_p2()                                                 #If no, update score                                   
+            continue  
+
+    if p2.distance(multi_food_40) < 20:                                          #if within 20 units of multifood                                              
+        score_p2 += 40                                                        #add 40 points                              
+        multi_food_40.goto(random.randint(-700,700),random.randint(-400,400))    #teleport to random cords                                                                                  
+        if score_p2 >= 1500:                                                                                 
+            endgamep1()                                                       #Check if 1500 points is exceeded                           
+        else:                                                                 #If yes, go endgame                   
+            update_score_p2()                                                 #If no, update score                                   
+            continue
+
+    if p2.distance(multi_food_50) < 20:                                          #if within 20 units of multifood                                              
+        score_p2 += 50                                                        #add 40 points                              
+        multi_food_50.goto(random.randint(-700,700),random.randint(-400,400))    #teleport to random cords                                                                                  
+        if score_p2 >= 1500:                                                                                 
+            endgamep1()                                                       #Check if 1500 points is exceeded                           
+        else:                                                                 #If yes, go endgame                   
+            update_score_p2()                                                 #If no, update score                                   
+            continue                                                                                                                                             
+#-----------------------------------------------------------------------------------------------------------
+#It's go time
+window.mainloop()    
